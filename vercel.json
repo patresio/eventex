@@ -10,5 +10,11 @@
       "src": "/(.*)",
       "dest": "eventex/wsgi.py"
     }
-  ]
+  ],
+  "env": [
+    {
+      "DEBUG": "False",
+      "DATABASE_URL": "postgres://default:yKAQDkM8c7hL@ep-cold-wood-99542566.us-east-1.postgres.vercel-storage.com:5432/verceldb"
+    }
+  ],
 }
