@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
-from decouple import config, Csv
+from decouple import config
 from dj_database_url import parse as dburl
 import os
 
@@ -29,7 +29,10 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='', cast=Csv())
+if DEBUG:
+    ALLOWED_HOSTS = [".localhost", "127.0.0.1", "[::1]"]
+else:
+    ALLOWED_HOSTS = ['.vercel.app']
 
 
 # Application definition
