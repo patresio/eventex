@@ -3,11 +3,10 @@
   "builds": [
     {
       "src": "eventex/wsgi.py",
-      "use": "@vercel/python",
-      "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
+      "use": "@vercel/python"
     },
     {
-      "src": "build_files.sh",
+      "src": "build.sh",
       "use": "@vercel/static-build",
       "config": {
         "distDir": "staticfiles"
@@ -23,5 +22,6 @@
       "src": "/(.*)",
       "dest": "eventex/wsgi.py"
     }
-  ]
+  ],
+  "outputDirectory": "staticfiles"
 }
