@@ -20,6 +20,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('', include('eventex.core.urls'), name='home'),
+    path('inscricao/', include('eventex.subscriptions.urls'), name='subscribe'),
     path('admin/', admin.site.urls),
 ]
 

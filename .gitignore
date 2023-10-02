@@ -8,3 +8,4 @@
 .tool-versions
 .venv
 staticfiles
+static
