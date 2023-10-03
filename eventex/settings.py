@@ -131,6 +131,7 @@ MEDIA_ROOT = str(BASE_DIR / 'media/')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+DEFAULT_FROM_EMAIL = 'noobemforma@gmail.com'
 
 # Email Configuration
 EMAIL_BACKEND = config('EMAIL_BACKEND')
