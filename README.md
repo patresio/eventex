@@ -22,3 +22,5 @@ python manage.py test
 ```
 
 ## Como fazer o deploy?
+
+Deploy feito no vercel.app
