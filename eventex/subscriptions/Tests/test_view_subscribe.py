@@ -1,6 +1,7 @@
 from django.core import mail
 from django.test import TestCase
 from eventex.subscriptions.forms import SubscriptionForm
+from eventex.subscriptions.models import Subscription
 
 
 # Create your tests here.
@@ -27,6 +28,7 @@ class SubscribeGet(TestCase):
             ('type="submit"', 1)
         )
 
+# sourcery skip: no-loop-in-tests
         for text, count in tags:
             with self.subTest():
                 self.assertContains(self.response, text, count)
@@ -39,7 +41,6 @@ class SubscribeGet(TestCase):
         """Context must have subscription form"""
         form = self.response.context['form']
         self.assertIsInstance(form, SubscriptionForm)
-
 
 
 class SubscriptionPostValid(TestCase):
@@ -55,7 +56,8 @@ class SubscriptionPostValid(TestCase):
         """ Valid send email for subscribe """
         self.assertEqual(1, len(mail.outbox))
 
-
+    def test_save_subscription(self):
+        self.assertTrue(Subscription.objects.exists())
 
 class SubscribePostInvalid(TestCase):
     def setUp(self):
@@ -76,6 +78,8 @@ class SubscribePostInvalid(TestCase):
         form = self.response.context['form']
         self.assertTrue(form.errors)
 
+    def test_dont_save_subscription(self):
+        self.assertFalse(Subscription.objects.exists())
 
 class SubscribeSucessMessage(TestCase):
     def test_message(self):
