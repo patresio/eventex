@@ -8,4 +8,4 @@
 .tool-versions
 .venv
 staticfiles
-static
+.env*.local
