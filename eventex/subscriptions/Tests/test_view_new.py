@@ -1,15 +1,15 @@
-import uuid
-
 from django.core import mail
 from django.test import TestCase
+from django.shortcuts import resolve_url as r
+
 from eventex.subscriptions.forms import SubscriptionForm
 from eventex.subscriptions.models import Subscription
 
 
 # Create your tests here.
-class SubscribeGet(TestCase):
+class SubscriptionNewGet(TestCase):
     def setUp(self):
-        self.response = self.client.get('/inscricao/')
+        self.response = self.client.get(r('subscriptions:new'))
 
     def test_get(self):
         '''Get /inscricao/ must response status code 200'''
@@ -30,7 +30,7 @@ class SubscribeGet(TestCase):
             ('type="submit"', 1)
         )
 
-# sourcery skip: no-loop-in-tests
+        # sourcery skip: no-loop-in-tests
         for text, count in tags:
             with self.subTest():
                 self.assertContains(self.response, text, count)
@@ -45,14 +45,14 @@ class SubscribeGet(TestCase):
         self.assertIsInstance(form, SubscriptionForm)
 
 
-class SubscriptionPostValid(TestCase):
+class SubscriptionNewPostValid(TestCase):
     def setUp(self):
         self.data = dict(name='Ricardo Pereira', cpf='12345678901', email='ricardo@pereira.net', phone='17-98814-7723')
-        self.response = self.client.post('/inscricao/', self.data)
+        self.response = self.client.post(r('subscriptions:new'), self.data)
 
     def test_post(self):
         """ Valid POST should redirect to /inscricao/1/ """
-        self.assertRedirects(self.response, '/inscricao/1/')
+        self.assertRedirects(self.response, r('subscriptions:detail', 1))
 
     def test_send_subscribe_email(self):
         """ Valid send email for subscribe """
@@ -61,9 +61,10 @@ class SubscriptionPostValid(TestCase):
     def test_save_subscription(self):
         self.assertTrue(Subscription.objects.exists())
 
-class SubscribePostInvalid(TestCase):
+
+class SubscriptionNewPostInvalid(TestCase):
     def setUp(self):
-        self.response = self.client.post('/inscricao/', {})
+        self.response = self.client.post(r('subscriptions:new'), {})
 
     def test_post(self):
         """Invalid POST should not redirect"""
@@ -82,5 +83,3 @@ class SubscribePostInvalid(TestCase):
 
     def test_dont_save_subscription(self):
         self.assertFalse(Subscription.objects.exists())
-
-
