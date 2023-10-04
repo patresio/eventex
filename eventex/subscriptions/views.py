@@ -38,9 +38,9 @@ def new(request):
     return render(request, 'subscriptions/subscription_form.html', {'form': SubscriptionForm()})
 
 
-def detail(request, id):
+def detail(request, pk):
     try:
-        subscription = Subscription.objects.get(id=id)
+        subscription = Subscription.objects.get(pk=pk)
     except Subscription.DoesNotExist as e:
         raise Http404 from e
     return render(request, 'subscriptions/subscription_detail.html', {'subscription': subscription})

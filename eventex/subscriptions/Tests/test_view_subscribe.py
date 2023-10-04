@@ -1,3 +1,5 @@
+import uuid
+
 from django.core import mail
 from django.test import TestCase
 from eventex.subscriptions.forms import SubscriptionForm
@@ -45,8 +47,8 @@ class SubscribeGet(TestCase):
 
 class SubscriptionPostValid(TestCase):
     def setUp(self):
-        data = dict(name='Ricardo Pereira', cpf='12345678901', email='ricardo@pereira.net', phone='17-98814-7723')
-        self.response = self.client.post('/inscricao/', data)
+        self.data = dict(name='Ricardo Pereira', cpf='12345678901', email='ricardo@pereira.net', phone='17-98814-7723')
+        self.response = self.client.post('/inscricao/', self.data)
 
     def test_post(self):
         """ Valid POST should redirect to /inscricao/1/ """
