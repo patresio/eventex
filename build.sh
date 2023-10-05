@@ -9,6 +9,9 @@ source venv/bin/activate
 echo "Installing the latest version of pip..."
 python -m pip install --upgrade pip
 
+# Upgrade SetupTools
+python -m pip install --upgrade setuptools
+
 # Build the project
 echo "Building the project..."
 python -m pip install -r requirements.txt
