@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+
 from pathlib import Path
 from decouple import config, Csv
 from dj_database_url import parse as dburl
@@ -80,10 +81,23 @@ WSGI_APPLICATION = 'eventex.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-default_dburl = 'sqlite:///' + str(BASE_DIR / 'db.sqlite3')
-DATABASES = {
-    'default': config('DATABASE_URL', default=default_dburl, cast=dburl),
-}
+if DEBUG:
+    default_dburl = 'sqlite:///' + str(BASE_DIR / 'db.sqlite3')
+    DATABASES = {
+        'default': config('DATABASE_URL', default=default_dburl, cast=dburl),
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': config('DB_NAME'),
+            'HOST': config('DB_HOST'),
+            'PORT': config('DB_PORT'),
+            'USER': config('DB_USER'),
+            'PASSWORD': config('DB_PASSWORD'),
+            'OPTIONS': {'ssl': {'ca': config('MYSQL_ATTR_SSL_CA')}}
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
