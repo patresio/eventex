@@ -21,3 +21,6 @@ python manage.py migrate --noinput
 # Collect static files
 echo "Collecting static files..."
 python manage.py collectstatic --noinput --clear
+
+# Carrega Keynotes
+python manage.py loaddata keynotes.json
