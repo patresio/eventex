@@ -23,4 +23,4 @@ echo "Collecting static files..."
 python manage.py collectstatic --noinput --clear
 
 # Carrega Keynotes
-python manage.py loaddata keynotes.json
+#python manage.py loaddata keynotes.json
