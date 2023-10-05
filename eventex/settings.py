@@ -89,12 +89,13 @@ if DEBUG:
 else:
     DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django_psdb_engine', # pip install django-psdb-engine ('Configuração para MySQL')
         'NAME': config('PLANET_DB'),
         'HOST': config('PLANET_DB_HOST'),
+        'PORT': config('PLANET_DB_PORT'),
         'USER': config('PLANETSCALE_DB_USERNAME'),
         'PASSWORD': config('PLANETSCALE_DB_PASSWORD'),
-        'OPTIONS': {'ssl': {'ca': config('PLANETSCALE_SSL_CERT_PATH')}}
+        'OPTIONS': {'ssl': {'ca': config('PLANETSCALE_SSL_CERT_PATH') }, 'charset': 'utf8mb4'}
     }
     }
 
