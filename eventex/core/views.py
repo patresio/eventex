@@ -5,10 +5,7 @@ from eventex.core.models import Speaker
 
 # Create your views here.
 def home(request):
-    speakers = [
-        {'name': 'Grace Hopper', 'photo': 'https://encurtador.com.br/bsUVZ'},
-        {'name': 'Alan Turing', 'photo': 'https://encurtador.com.br/uRUY5'}
-    ]
+    speakers = Speaker.objects.all()
     return render(request, 'index.html', {'speakers': speakers})
 
 
