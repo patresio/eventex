@@ -9,7 +9,9 @@ typing_extensions==4.8.0
 django-extensions==3.2.3
 django-test-without-migrations==0.6
 gunicorn==21.2.0
-psycopg2-binary==2.9.8
-mysql==0.0.3
-mysqlclient==2.2.0
-PyMySQL==1.1.0
+#psycopg2-binary==2.9.8
+mysql
+mysqlclient
+mysql-connector
+mysql-connector-python
+pymysqlgi
