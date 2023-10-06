@@ -15,6 +15,9 @@ from pathlib import Path
 from decouple import config, Csv
 from dj_database_url import parse as dburl
 import os
+import pymysql
+
+pymysql.install_as_MySQLdb()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -95,7 +98,7 @@ else:
         'PORT': config('PLANET_DB_PORT'),
         'USER': config('PLANETSCALE_DB_USERNAME'),
         'PASSWORD': config('PLANETSCALE_DB_PASSWORD'),
-        'OPTIONS': {'ssl': {'ca': config('PLANETSCALE_SSL_CERT_PATH') }, 'charset': 'utf8mb4'}
+        'OPTIONS': {'ssl': {'ca': config('PLANETSCALE_SSL_CERT_PATH') }}
     }
     }
 
