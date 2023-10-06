@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
-
+import pymysql
 from pathlib import Path
 from decouple import config, Csv
 from dj_database_url import parse as dburl, config as dburl_config
@@ -88,6 +88,9 @@ if DEBUG:
         'default': config('DATABASE_URL', default=default_dburl, cast=dburl),  
     }
 else:
+    pymysql.version_info = (1, 4, 6, "final", 1)
+    pymysql.install_as_MySQLdb()
+
     DATABASES = {
         'default': dburl(
             config('DATABASE_URL'), conn_max_age=600, ssl_require=True
