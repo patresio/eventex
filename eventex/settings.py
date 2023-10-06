@@ -13,10 +13,9 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 from decouple import config, Csv
-from dotenv import load_dotenv
 from dj_database_url import parse as dburl, config as dburl_config
 import os
-load_dotenv()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -91,12 +90,13 @@ if DEBUG:
 else:
     DATABASES = {
         'default': dburl(
-            os.environ.get('DATABASE_URL'), conn_max_age=600, ssl_require=True
+            config('DATABASE_URL'), conn_max_age=600, ssl_require=True
         )
     }
     DATABASES['default']['OPTIONS']['charset'] = 'utf8mb4'
     del DATABASES['default']['OPTIONS']['sslmode']
     DATABASES['default']['OPTIONS']['ssl'] =  {'ca': os.environ.get('MYSQL_ATTR_SSL_CA')}
+    DATABASES['default']['OPTIONS']['init_command'] = "SET sql_mode='STRICT_TRANS_TABLES'"
 
 
 # Password validation

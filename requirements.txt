@@ -9,7 +9,7 @@ typing_extensions==4.8.0
 django-extensions==3.2.3
 django-test-without-migrations==0.6
 gunicorn==21.2.0
-#psycopg2-binary==2.9.8
-python-dotenv==1.0.0
+psycopg2-binary==2.9.8
 django-psdb-engine==1.0.6
 PyMySQL==1.1.0
+mysqlclient==2.2.0
