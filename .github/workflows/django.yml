@@ -25,6 +25,8 @@ jobs:
         cp contrib/env-sample .env
         python -m pip install --upgrade pip
         pip install -r requirements.txt
+
     - name: Run Tests
       run: |
+        python manage.py makemigrations
         python manage.py test
