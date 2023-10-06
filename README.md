@@ -2,6 +2,8 @@
 
 Sistema de eventos encomendado pela Morena.
 
+![example workflow](https://github.com/github/docs/actions/workflows/main.yml/badge.svg)
+
 ## Como desenvolver?
 
 1. Clone o repositório
@@ -24,3 +26,4 @@ python manage.py test
 ## Como fazer o deploy?
 
 Deploy feito no vercel.app
+PlanetScale mysql
