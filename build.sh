@@ -6,7 +6,12 @@ python3.9 -m venv venv
 source venv/bin/activate
 
 # Install the latest version of pip
-#echo "Installing the latest version of pip..."
+echo "Exportando as configurações na mão"
+echo "Exportando as configurações na mão"
+echo "Exportando as configurações na mão"
+echo "Exportando as configurações na mão"
+export MYSQLCLIENT_CFLAGS=`pkg-config mysqlclient --cflags`
+export MYSQLCLIENT_LDFLAGS=`pkg-config mysqlclient --libs`
 
 
 # Upgrade SetupTools
