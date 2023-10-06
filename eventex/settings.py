@@ -15,9 +15,6 @@ from pathlib import Path
 from decouple import config, Csv
 from dj_database_url import parse as dburl
 import os
-import pymysql
-
-pymysql.install_as_MySQLdb()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
