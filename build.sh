@@ -10,11 +10,11 @@ echo "Installing the latest version of pip..."
 python -m pip install --upgrade pip
 
 # Upgrade SetupTools
-python -m pip install --upgrade setuptools
+pip install wheel setuptools pip --upgrade
 
 # Build the project
 echo "Building the project..."
-python -m pip install -r requirements.txt
+python -m pip install -r requirements.txt --no-cache-dir
 
 # Make migrations
 echo "Making migrations..."
