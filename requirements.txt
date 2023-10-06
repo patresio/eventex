@@ -1,5 +1,4 @@
 asgiref==3.7.2
-dj-database-url==2.1.0
 mysql
 dj-static==0.0.6
 Django==4.2.5
@@ -10,7 +9,7 @@ typing_extensions==4.8.0
 django-extensions==3.2.3
 django-test-without-migrations==0.6
 django-psdb-engine==1.0.6
-PyMySQL==1.1.0
 gunicorn==21.2.0
 psycopg2-binary==2.9.8
-
+dj-database-url==2.0.0
+PyMySQL==1.0.3

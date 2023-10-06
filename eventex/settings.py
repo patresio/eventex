@@ -90,12 +90,20 @@ if DEBUG:
 else:
     pymysql.version_info = (1, 4, 6, "final", 1)
     pymysql.install_as_MySQLdb()
+    import dj_database_url
     print(config('DATABASE_URL'))
+    # DATABASES = {
+    #     'default': dburl(
+    #         config('DATABASE_URL'), conn_max_age=600, ssl_require=True, engine='django_psdb_engine'
+    #     )
+    # }
     DATABASES = {
-        'default': dburl(
-            config('DATABASE_URL'), conn_max_age=600, ssl_require=True, engine='django_psdb_engine'
-        )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
+    }
+    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
     DATABASES['default']['OPTIONS']['charset'] = 'utf8mb4'
     del DATABASES['default']['OPTIONS']['sslmode']
     DATABASES['default']['OPTIONS']['ssl'] =  {'ca': os.environ.get('MYSQL_ATTR_SSL_CA')}
