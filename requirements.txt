@@ -1,5 +1,6 @@
 asgiref==3.7.2
 dj-database-url==2.1.0
+mysql
 dj-static==0.0.6
 Django==4.2.5
 python-decouple==3.8
