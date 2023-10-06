@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import pymysql
 from pathlib import Path
 from decouple import config, Csv
-from dj_database_url import parse as dburl, config as dburl_config
+from dj_database_url import parse as dburl
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -88,19 +88,11 @@ if DEBUG:
         'default': config('DATABASE_URL', default=default_dburl, cast=dburl),  
     }
 else:
-    import dj_database_url
-    # DATABASES = {
-    #     'default': dburl(
-    #         config('DATABASE_URL'), conn_max_age=600, ssl_require=True, engine='django_psdb_engine'
-    #     )
-    # }
     DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'default': dburl(
+            config('DATABASE_URL'), conn_max_age=600, ssl_require=True
+        )
     }
-    }
-    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
     DATABASES['default']['OPTIONS']['charset'] = 'utf8mb4'
     del DATABASES['default']['OPTIONS']['sslmode']
     DATABASES['default']['OPTIONS']['ssl'] =  {'ca': os.environ.get('MYSQL_ATTR_SSL_CA')}
