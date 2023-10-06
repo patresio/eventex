@@ -88,14 +88,19 @@ if DEBUG:
         'default': config('DATABASE_URL', default=default_dburl, cast=dburl),  
     }
 else:
+    database_url = "mysql://" + str(config('PLANETSCALE_DB_USERNAME'))+":" + str(config('PLANETSCALE_DB_PASSWORD')) + "@" + str(config('PLANETSCALE_DB_HOST')) + "/" + str(config('PLANETSCALE_DB'))
+    print(database_url)
+    print(database_url)
+    print(database_url)
+    print(database_url)
     DATABASES = {
         'default': dburl(
-            config('DATABASE_URL'), conn_max_age=600, ssl_require=True
+            database_url, conn_max_age=600, ssl_require=True
         )
     }
     DATABASES['default']['OPTIONS']['charset'] = 'utf8mb4'
     del DATABASES['default']['OPTIONS']['sslmode']
-    #DATABASES['default']['OPTIONS']['ssl'] =  {'ca': os.environ.get('MYSQL_ATTR_SSL_CA')}
+    DATABASES['default']['OPTIONS']['ssl'] =  {'ca': os.environ.get('PLANETSCALE_SSL_CERT_PATH')}
     print(DATABASES)
 
 
