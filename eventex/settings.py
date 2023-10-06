@@ -92,7 +92,7 @@ if DEBUG:
 else:
     DATABASES = {
     'default': {
-        'ENGINE': 'django_psdb_engine', # pip install django-psdb-engine ('Configuração para MySQL')
+        'ENGINE': 'django.db.backends.mysql', # pip install django-psdb-engine ('Configuração para MySQL')
         'NAME': config('PLANET_DB'),
         'HOST': config('PLANET_DB_HOST'),
         'PORT': config('PLANET_DB_PORT'),
