@@ -88,11 +88,15 @@ if DEBUG:
         'default': config('DATABASE_URL', default=default_dburl, cast=dburl),  
     }
 else:
-    database_url = "mysql://" + str(config('PLANETSCALE_DB_USERNAME'))+":" + str(config('PLANETSCALE_DB_PASSWORD')) + "@" + str(config('PLANETSCALE_DB_HOST')) + "/" + str(config('PLANETSCALE_DB'))
+    # Configurações
+    username = config('PLANETSCALE_DB_USERNAME')
+    password = config('PLANETSCALE_DB_PASSWORD')
+    host = config('PLANETSCALE_DB_HOST')
+    db = config('PLANETSCALE_DB')
+    # Database
+    database_url = f'mysql://{username}:{password}@{host}/{db}'
     print(database_url)
-    print(database_url)
-    print(database_url)
-    print(database_url)
+    #database_url = "mysql://" + str(config('PLANETSCALE_DB_USERNAME'))+":" + str(config('PLANETSCALE_DB_PASSWORD')) + "@" + str(config('PLANETSCALE_DB_HOST')) + "/" + str(config('PLANETSCALE_DB'))
     DATABASES = {
         'default': dburl(
             database_url, conn_max_age=600, ssl_require=True
