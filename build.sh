@@ -5,7 +5,7 @@
 python3.9 -m venv venv
 source venv/bin/activate
 
-# Install the latest version of pip
+
 echo "Exportando as configurações na mão"
 echo "Exportando as configurações na mão"
 echo "Exportando as configurações na mão"
@@ -15,7 +15,8 @@ export MYSQLCLIENT_LDFLAGS=`pkg-config mysqlclient --libs`
 
 
 # Upgrade SetupTools
-#pip install wheel setuptools pip --upgrade
+# Install the latest version of pip
+python -m pip install wheel setuptools pip --upgrade
 
 # Build the project
 echo "Building the project..."
