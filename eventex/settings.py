@@ -9,14 +9,13 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-import pymysql
+
 from pathlib import Path
 from decouple import config, Csv
 from dotenv import load_dotenv
-load_dotenv() 
 from dj_database_url import parse as dburl, config as dburl_config
 import os
-
+load_dotenv() 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -84,31 +83,39 @@ WSGI_APPLICATION = 'eventex.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 
-if DEBUG:
-    default_dburl = 'sqlite:///' + str(BASE_DIR / 'db.sqlite3')
-    DATABASES = {
-        'default': config('DATABASE_URL', default=default_dburl, cast=dburl),
-    }
-else:
 
-    pymysql.version_info = (1, 4, 6, "final", 1)
-    pymysql.install_as_MySQLdb()
+# default_dburl = 'sqlite:///' + str(BASE_DIR / 'db.sqlite3')
+# DATABASES = {
+#     'default': config('DATABASE_URL', default=default_dburl, cast=dburl),
+#     'default': dburl(os.environ.get('DATABASE_URL'), conn_max_age=600, ssl_require=True, engine='django_psdb_engine', test_options={'ssl': {'ca': os.environ.get('PLANETSCALE_SSL_CERT_PATH')},'charset': 'utf8mb4'})    
+# }
 
-    DATABASES = {
+DATABASES = {
     'default': {
-        'ENGINE': 'django_psdb_engine',     # django_psdb_engine installed
-        'NAME': os.environ.get('PLANETSCALE_DB'),
-        'HOST': os.environ.get('PLANETSCALE_DB_HOST'),
-        'PORT': os.environ.get('PLANET_DB_PORT'),
-        'USER': os.environ.get('PLANETSCALE_DB_USERNAME'),
-        'PASSWORD': os.environ.get('PLANETSCALE_DB_PASSWORD'),
-        'CONN_MAX_AGE': 600,
-        'SSL_REQUIRED': True,
-        'OPTIONS': {
-            'ssl': {'ca': os.environ.get('PLANETSCALE_SSL_CERT_PATH')},
-            'charset': 'utf8mb4'},
-    },
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
+}
+DATABASES['default'] = dburl(os.environ.get('DATABASE_URL'), conn_max_age=600, ssl_require=True)
+DATABASES['default']['OPTIONS']['charset'] = 'utf8mb4'
+del DATABASES['default']['OPTIONS']['sslmode'] 
+DATABASES['default']['OPTIONS']['ssl'] =  {'ca': os.environ.get('MYSQL_ATTR_SSL_CA')}
+
+# DATABASES = {
+# 'default': {
+#     'ENGINE': 'django_psdb_engine',     # django_psdb_engine installed
+#     'NAME': os.environ.get('PLANETSCALE_DB'),
+#     'HOST': os.environ.get('PLANETSCALE_DB_HOST'),
+#     'PORT': os.environ.get('PLANET_DB_PORT'),
+#     'USER': os.environ.get('PLANETSCALE_DB_USERNAME'),
+#     'PASSWORD': os.environ.get('PLANETSCALE_DB_PASSWORD'),
+#     'CONN_MAX_AGE': 600,
+#     'SSL_REQUIRED': True,
+#     'OPTIONS': {
+#         'ssl': {'ca': os.environ.get('PLANETSCALE_SSL_CERT_PATH')},
+#         'charset': 'utf8mb4'},
+# },
+# }
 
 
 # Password validation
