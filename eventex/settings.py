@@ -95,7 +95,7 @@ else:
     }
     DATABASES['default']['OPTIONS']['charset'] = 'utf8mb4'
     del DATABASES['default']['OPTIONS']['sslmode']
-    DATABASES['default']['OPTIONS']['ssl'] =  {'ca': os.environ.get('MYSQL_ATTR_SSL_CA')}
+    #DATABASES['default']['OPTIONS']['ssl'] =  {'ca': os.environ.get('MYSQL_ATTR_SSL_CA')}
     print(DATABASES)
 
 
