@@ -10,9 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
-
 from pathlib import Path
 from decouple import config, Csv
+from dotenv import load_dotenv
+load_dotenv() 
 from dj_database_url import parse as dburl
 import os
 
@@ -43,6 +44,7 @@ INSTALLED_APPS = [
     # Apps Thirds
     'test_without_migrations',
     'django_extensions',
+    'django_mysql',
     # My apps
     'eventex.core',
     'eventex.subscriptions.apps.SubscriptionsConfig',
@@ -81,11 +83,24 @@ WSGI_APPLICATION = 'eventex.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+if DEBUG:
+    default_dburl = 'sqlite:///' + str(BASE_DIR / 'db.sqlite3')
+    DATABASES = {
+        'default': config('DATABASE_URL', default=default_dburl, cast=dburl),
+    }
+else:
+    DATABASES = {
+    'default': {
+        'ENGINE': 'django_psdb_engine',     # django_psdb_engine installed
+        'NAME': os.environ.get('PLANETSCALE_DB'),
+        'HOST': os.environ.get('PLANETSCALE_DB_HOST'),
+        #'PORT': os.environ.get('DB_PORT'),
+        'USER': os.environ.get('PLANETSCALE_DB_USERNAME'),
+        'PASSWORD': os.environ.get('PLANETSCALE_DB_PASSWORD'),
+        'OPTIONS': {'ssl': {'ca': os.environ.get('PLANETSCALE_SSL_CERT_PATH')}}
+    }
+    }
 
-default_dburl = 'sqlite:///' + str(BASE_DIR / 'db.sqlite3')
-DATABASES = {
-    'default': config('DATABASE_URL', default=default_dburl, cast=dburl),
-}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
