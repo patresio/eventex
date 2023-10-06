@@ -6,11 +6,11 @@ python3.9 -m venv venv
 source venv/bin/activate
 
 # Install the latest version of pip
-echo "Installing the latest version of pip..."
-python -m pip install --upgrade pip
+#echo "Installing the latest version of pip..."
+
 
 # Upgrade SetupTools
-pip install wheel setuptools pip --upgrade
+#pip install wheel setuptools pip --upgrade
 
 # Build the project
 echo "Building the project..."
