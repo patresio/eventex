@@ -89,17 +89,16 @@ if DEBUG:
     }
 else:
     pymysql.version_info = (1, 4, 6, "final", 1)
-    pymysql.install_as_MySQLdb
-
+    pymysql.install_as_MySQLdb()
+    print(config('DATABASE_URL'))
     DATABASES = {
         'default': dburl(
-            config('DATABASE_URL'), conn_max_age=600, ssl_require=True
+            config('DATABASE_URL'), conn_max_age=600, ssl_require=True, engine='django_psdb_engine'
         )
     }
     DATABASES['default']['OPTIONS']['charset'] = 'utf8mb4'
     del DATABASES['default']['OPTIONS']['sslmode']
     DATABASES['default']['OPTIONS']['ssl'] =  {'ca': os.environ.get('MYSQL_ATTR_SSL_CA')}
-    DATABASES['default']['OPTIONS']['init_command'] = "SET sql_mode='STRICT_TRANS_TABLES'"
 
 
 # Password validation
