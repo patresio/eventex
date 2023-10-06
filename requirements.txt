@@ -9,5 +9,5 @@ django-extensions==3.2.3
 django-test-without-migrations==0.6
 gunicorn==21.2.0
 psycopg2-binary==2.9.8
-dj-database-url==2.0.0
-PyMySQL==1.0.3
+dj-database-url
+PyMySQL
