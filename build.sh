@@ -15,8 +15,8 @@ python3 -m pip install --upgrade setuptools
 # Build the project
 echo "Building the project..."
 python3 -m pip install -r requirements.txt
-#export MYSQLCLIENT_CFLAGS=`pkg-config mysqlclient --cflags`
-#export MYSQLCLIENT_LDFLAGS=`pkg-config mysqlclient --libs`
+export MYSQLCLIENT_CFLAGS=`pkg-config mysqlclient --cflags`
+export MYSQLCLIENT_LDFLAGS=`pkg-config mysqlclient --libs`
 
 # Make migrations
 echo "Making migrations..."
