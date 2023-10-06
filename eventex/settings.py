@@ -99,7 +99,7 @@ else:
         'ENGINE': 'django_psdb_engine',     # django_psdb_engine installed
         'NAME': os.environ.get('PLANETSCALE_DB'),
         'HOST': os.environ.get('PLANETSCALE_DB_HOST'),
-        'PORT': os.environ.get('DB_PORT'),
+        'PORT': os.environ.get('PLANET_DB_PORT'),
         'USER': os.environ.get('PLANETSCALE_DB_USERNAME'),
         'PASSWORD': os.environ.get('PLANETSCALE_DB_PASSWORD'),
         'CONN_MAX_AGE': 600,
