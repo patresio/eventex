@@ -84,23 +84,11 @@ WSGI_APPLICATION = 'eventex.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-if DEBUG:
-    default_dburl = 'sqlite:///' + str(BASE_DIR / 'db.sqlite3')
-    DATABASES = {
-        'default': config('DATABASE_URL', default=default_dburl, cast=dburl),
-    }
-else:
-    DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql', # pip install django-psdb-engine ('Configuração para MySQL')
-        'NAME': config('PLANET_DB'),
-        'HOST': config('PLANET_DB_HOST'),
-        'PORT': config('PLANET_DB_PORT'),
-        'USER': config('PLANETSCALE_DB_USERNAME'),
-        'PASSWORD': config('PLANETSCALE_DB_PASSWORD'),
-        'OPTIONS': {'ssl': {'ca': config('PLANETSCALE_SSL_CERT_PATH') }}
-    }
-    }
+
+default_dburl = 'sqlite:///' + str(BASE_DIR / 'db.sqlite3')
+DATABASES = {
+    'default': config('DATABASE_URL', default=default_dburl, cast=dburl),
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
