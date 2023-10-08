@@ -89,7 +89,7 @@ if DEBUG:
     }
 else:
     # Database
-    database_url = f"mysql://{config('PLANETSCALE_DB_USERNAME')}:{config('PLANETSCALE_DB_PASSWORD')}@{config('PLANETSCALE_DB')}/{config('PLANETSCALE_DB_HOST')}"
+    database_url = f"mysql://{config('PLANETSCALE_DB_USERNAME')}:{config('PLANETSCALE_DB_PASSWORD')}@{config('PLANETSCALE_DB_HOST')}/{config('PLANETSCALE_DB')}"
     DATABASES = {
         'default': dburl(
             database_url, conn_max_age=600, ssl_require=True
