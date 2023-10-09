@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+
 from pathlib import Path
 from decouple import config, Csv
 from dj_database_url import parse as dburl
@@ -80,23 +81,28 @@ WSGI_APPLICATION = 'eventex.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-
 if DEBUG:
     default_dburl = 'sqlite:///' + str(BASE_DIR / 'db.sqlite3')
     DATABASES = {
-        'default': config('DATABASE_URL', default=default_dburl, cast=dburl),  
+        'default': dburl(default_dburl),  
     }
 else:
-    # Database
-    database_url = f"mysql://{config('PLANETSCALE_DB_USERNAME')}:{config('PLANETSCALE_DB_PASSWORD')}@{config('PLANETSCALE_DB_HOST')}/{config('PLANETSCALE_DB')}"
-    DATABASES = {
-        'default': dburl(
-            database_url, conn_max_age=600, ssl_require=True
-        )
-    }
-    DATABASES['default']['OPTIONS']['charset'] = 'utf8mb4'
-    del DATABASES['default']['OPTIONS']['sslmode']
-    DATABASES['default']['OPTIONS']['ssl'] =  {'ca': config('PLANETSCALE_SSL_CERT_PATH')}
+    if config('TYPE_DB') == 'mysql':
+        # Database
+        database_url = f"mysql://{config('PLANETSCALE_DB_USERNAME')}:{config('PLANETSCALE_DB_PASSWORD')}@{config('PLANETSCALE_DB_HOST')}/{config('PLANETSCALE_DB')}"
+        DATABASES = {
+            'default': dburl(
+                database_url, conn_max_age=600, ssl_require=True
+            )
+        }
+        DATABASES['default']['OPTIONS']['charset'] = 'utf8mb4'
+        del DATABASES['default']['OPTIONS']['sslmode']
+        DATABASES['default']['OPTIONS']['ssl'] =  {'ca': config('PLANETSCALE_SSL_CERT_PATH')}
+    if config('TYPE_DB') == 'psql':
+        database_url = config('DATABASE_URL')
+        DATABASES = {
+            'default': dburl(database_url)
+        }
 
 
 # Password validation
@@ -132,8 +138,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
-#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles', 'static')
 STATIC_ROOT = str(BASE_DIR / 'staticfiles/static')
 
 MEDIA_URL = 'img/'
