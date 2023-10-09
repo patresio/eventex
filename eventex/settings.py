@@ -87,8 +87,8 @@ if DEBUG:
         'default': dburl(default_dburl),  
     }
 else:
+    # Configuração para o mysql planetscale
     if config('TYPE_DB') == 'mysql':
-        # Database
         database_url = f"mysql://{config('PLANETSCALE_DB_USERNAME')}:{config('PLANETSCALE_DB_PASSWORD')}@{config('PLANETSCALE_DB_HOST')}/{config('PLANETSCALE_DB')}"
         DATABASES = {
             'default': dburl(
@@ -98,6 +98,7 @@ else:
         DATABASES['default']['OPTIONS']['charset'] = 'utf8mb4'
         del DATABASES['default']['OPTIONS']['sslmode']
         DATABASES['default']['OPTIONS']['ssl'] =  {'ca': config('PLANETSCALE_SSL_CERT_PATH')}
+    # configuração para os demais postgres
     if config('TYPE_DB') == 'psql':
         database_url = config('DATABASE_URL')
         DATABASES = {

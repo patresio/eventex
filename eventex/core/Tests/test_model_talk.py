@@ -39,6 +39,9 @@ class TalkModelTest(TestCase):
 
     def test_str(self):
         self.assertEqual('Titulo da palestra', str(self.talk))
+
+    def test_ordering(self):
+        self.assertListEqual(['start'], Talk._meta.ordering)
     
 
 class PeriodManagerTest(TestCase):
@@ -83,3 +86,6 @@ class CourseModelTest(TestCase):
 
     def test_str(self):
         self.assertEqual('Titulo do Curso', str(self.course))
+
+    def test_ordering(self):
+        self.assertListEqual(['start'], Course._meta.ordering)
