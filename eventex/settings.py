@@ -10,11 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
-import pymysql
 from pathlib import Path
 from decouple import config, Csv
 from dj_database_url import parse as dburl
-import os
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -97,8 +96,7 @@ else:
     }
     DATABASES['default']['OPTIONS']['charset'] = 'utf8mb4'
     del DATABASES['default']['OPTIONS']['sslmode']
-    DATABASES['default']['OPTIONS']['ssl'] =  {'ca': os.environ.get('PLANETSCALE_SSL_CERT_PATH')}
-    print(DATABASES)
+    DATABASES['default']['OPTIONS']['ssl'] =  {'ca': config('PLANETSCALE_SSL_CERT_PATH')}
 
 
 # Password validation
@@ -135,7 +133,8 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 # STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles', 'static')
+#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles', 'static')
+STATIC_ROOT = str(BASE_DIR / 'staticfiles/static')
 
 MEDIA_URL = 'img/'
 MEDIA_ROOT = str(BASE_DIR / 'media/')
