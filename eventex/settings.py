@@ -34,9 +34,7 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='', cast=Csv())
 # Application definition
 
 INSTALLED_APPS = [
-
     'cloudinary_storage',
-
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -52,11 +50,13 @@ INSTALLED_APPS = [
     'eventex.subscriptions.apps.SubscriptionsConfig',
 ]
 
+print(config('CLOUD_NAME'), config('CLOUD_API_KEY'), config('CLOUD_API_SECRET'))
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': config('CLOUD_NAME'),
     'API_KEY': config('CLOUD_API_KEY'),
     'API_SECRET': config('CLOUD_API_SECRET'),
 }
+
 
 
 
