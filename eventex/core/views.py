@@ -4,8 +4,6 @@ from django.views.generic.list import ListView
 from eventex.core.models import Speaker, Talk
 
 # Create your views here
-
-
 home = ListView.as_view(template_name='index.html', model=Speaker)
 
 speaker_detail = DetailView.as_view(model=Speaker)
