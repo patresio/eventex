@@ -50,7 +50,6 @@ INSTALLED_APPS = [
     'eventex.subscriptions.apps.SubscriptionsConfig',
 ]
 
-print(config('CLOUD_NAME'), config('CLOUD_API_KEY'), config('CLOUD_API_SECRET'))
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': config('CLOUD_NAME'),
     'API_KEY': config('CLOUD_API_KEY'),
