@@ -8,6 +8,7 @@ source venv/bin/activate
 # Install the latest version of pip
 echo "Installing the latest version of pip..."
 python -m pip install --upgrade pip
+python -m pip install --upgrade urllib3
 
 # Build the project
 echo "Building the project..."
