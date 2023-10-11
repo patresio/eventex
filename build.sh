@@ -8,7 +8,7 @@ source venv/bin/activate
 # Install the latest version of pip
 echo "Installing the latest version of pip..."
 python -m pip install --upgrade pip
-python -m pip install --upgrade urllib3
+python -m pip install --upgrade urllib3==1.26.15
 
 # Build the project
 echo "Building the project..."
@@ -20,8 +20,8 @@ python manage.py makemigrations --noinput
 python manage.py migrate --noinput
 
 # Collect static files
-# echo "Collecting static files..."
-# python manage.py collectstatic --noinput --upload-unhashed-files --clear 
+echo "Collecting static files..."
+python manage.py collectstatic --noinput --upload-unhashed-files --clear 
 
 # Carrega Keynotes
 #python manage.py loaddata keynotes.json
