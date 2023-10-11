@@ -34,7 +34,9 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='', cast=Csv())
 # Application definition
 
 INSTALLED_APPS = [
+
     'cloudinary_storage',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,6 +46,7 @@ INSTALLED_APPS = [
     # Apps Thirds
     'test_without_migrations',
     'django_extensions',
+    
     'cloudinary',
     # My apps
     'eventex.core',
@@ -145,13 +148,13 @@ CLOUDINARY_STORAGE = {
     'CLOUD_NAME': config('CLOUD_NAME'),
     'API_KEY': config('CLOUD_API_KEY'),
     'API_SECRET': config('CLOUD_API_SECRET'),
-    'STATICFILES_MANIFEST_ROOT': str(BASE_DIR / 'manifest/')
 }
 
 
 
 STATIC_URL = 'static/'
-STATIC_ROOT = str(BASE_DIR / 'staticfiles/static/')
+#STATIC_ROOT = str(BASE_DIR / 'staticfiles/static/')
+STATICFILES_DIR = [BASE_DIR / 'static']
 STORAGES = {
     "default": {"BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage"},
     "staticfiles": {"BACKEND": "cloudinary_storage.storage.StaticHashedCloudinaryStorage"}
