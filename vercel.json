@@ -13,7 +13,7 @@
             "src": "build.sh",
             "use": "@vercel/static-build",
             "config": {
-                "distDir": "staticfiles"
+                "distDir": "static"
             }
         }
     ],
@@ -27,5 +27,5 @@
             "dest": "eventex/wsgi.py"
         }
     ],
-    "outputDirectory": "staticfiles"
+    "outputDirectory": "static"
 }

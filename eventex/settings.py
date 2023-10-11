@@ -151,12 +151,13 @@ CLOUDINARY_STORAGE = {
     'STATICFILES_MANIFEST_ROOT': [BASE_DIR / 'manifest']
 }
 
-STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+
 
 STATICFILES_DIR = [BASE_DIR / 'static']
 
 STATIC_URL = 'static/'
-STATIC_ROOT = str(BASE_DIR / 'staticfiles/static')
+STATIC_ROOT = str(BASE_DIR / 'static')
+STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
 
 MEDIA_URL = 'img/'
 MEDIA_ROOT = str(BASE_DIR / 'media/')
