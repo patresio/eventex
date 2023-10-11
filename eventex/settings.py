@@ -151,7 +151,7 @@ CLOUDINARY_STORAGE = {
 
 
 STATIC_URL = 'static/'
-#STATIC_ROOT = str(BASE_DIR / 'staticfiles/static/')
+STATIC_ROOT = str(BASE_DIR / 'staticfiles/static/')
 STORAGES = {
     "default": {"BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage"},
     "staticfiles": {"BACKEND": "cloudinary_storage.storage.StaticHashedCloudinaryStorage"}
