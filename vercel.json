@@ -26,6 +26,6 @@
       "src": "/(.*)",
       "dest": "eventex/wsgi.py"
     }
-  ],
-  "outputDirectory": "staticfiles"
+  ]
+  //"outputDirectory": "staticfiles"
 }
