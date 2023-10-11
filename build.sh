@@ -8,11 +8,12 @@ source venv/bin/activate
 # Install the latest version of pip
 echo "Installing the latest version of pip..."
 python -m pip install --upgrade pip
+python -m pip install --upgrade urllib3==1.26.15
 
 # Build the project
 echo "Building the project..."
 python -m pip install -r requirements.txt
-python -m pip uninstall urllib3
+
 # Make migrations
 echo "Making migrations..."
 python manage.py makemigrations --noinput
