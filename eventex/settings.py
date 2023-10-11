@@ -152,7 +152,7 @@ CLOUDINARY_STORAGE = {
     'STATICFILES_MANIFEST_ROOT': [BASE_DIR / 'manifest']
 }
 
-STORAGES = {"default":{"BACKEND":'cloudinary_storage.storage.MediaCloudinaryStorage' }, "staticfiles": { "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage", }, }
+STORAGES = {"staticfiles":{"BACKEND":"cloudinary_storage.storage.MediaCloudinaryStorage" }, "default": { "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage", }, }
 
 STATICFILES_DIR = [BASE_DIR / 'static']
 
