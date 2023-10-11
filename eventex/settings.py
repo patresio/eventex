@@ -147,12 +147,11 @@ CLOUDINARY_STORAGE = {
     'CLOUD_NAME': config('CLOUD_NAME'),
     'API_KEY': config('CLOUD_API_KEY'),
     'API_SECRET': config('CLOUD_API_SECRET'),
-    'SECURE': True,
     'STATIC_TAG': 'static',
     'STATICFILES_MANIFEST_ROOT': [BASE_DIR / 'manifest']
 }
 
-STORAGES = {"staticfiles":{"BACKEND":"cloudinary_storage.storage.MediaCloudinaryStorage" }, "default": { "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage", }, }
+STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
 
 STATICFILES_DIR = [BASE_DIR / 'static']
 
