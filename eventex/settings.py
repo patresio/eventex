@@ -147,9 +147,13 @@ CLOUDINARY_STORAGE = {
     'CLOUD_NAME': config('CLOUD_NAME'),
     'API_KEY': config('CLOUD_API_KEY'),
     'API_SECRET': config('CLOUD_API_SECRET'),
+    'SECURE': True,
+    'STATIC_TAG': 'static',
+    'STATICFILES_MANIFEST_ROOT': [BASE_DIR / 'manifest']
 }
 
-USE_CLOUDINARY = config('USE_CLOUDINARY')
+STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+
 STATICFILES_DIR = [BASE_DIR / 'static']
 
 STATIC_URL = 'static/'
@@ -158,8 +162,8 @@ STATIC_ROOT = str(BASE_DIR / 'staticfiles/static')
 MEDIA_URL = 'img/'
 MEDIA_ROOT = str(BASE_DIR / 'media/')
 
-if USE_CLOUDINARY:
-    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
