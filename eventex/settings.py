@@ -150,19 +150,18 @@ CLOUDINARY_STORAGE = {
     #'SECURE': False,
 }
 
-# STORAGES = {
-#     'default':
-#         {
-#         "BACKEND":
-#             'cloudinary_storage.storage.MediaCloudinaryStorage' 
-#         }, 
-#         "staticfiles": 
-#             { "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage", }, 
-#         }
+STORAGES = {
+    'default':
+        {
+        "BACKEND":
+            'cloudinary_storage.storage.MediaCloudinaryStorage' 
+        }, 
+        "staticfiles": 
+            { "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage", }, 
+        }
 
 STATIC_URL = 'static/'
 
-STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
 STATIC_ROOT = str(BASE_DIR / 'staticfiles/static')
 STATICFILES_DIR = [BASE_DIR / 'static']
 
