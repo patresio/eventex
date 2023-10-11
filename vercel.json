@@ -27,5 +27,4 @@
       "dest": "eventex/wsgi.py"
     }
   ]
-  //"outputDirectory": "staticfiles"
 }
