@@ -34,12 +34,14 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='', cast=Csv())
 # Application definition
 
 INSTALLED_APPS = [
-    'cloudinary_storage',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+
+    'cloudinary_storage',
+
     'django.contrib.staticfiles',
     # Apps Thirds
     'test_without_migrations',
@@ -144,7 +146,7 @@ USE_TZ = True
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': config('CLOUD_NAME'),
     'API_KEY': config('CLOUD_API_KEY'),
-    'API_SECRET': config('CLOUD_API_SECRET'),
+    'API_SECRET': config('CLOUD_API_SECRET')
 }
 
 STORAGES = {
@@ -159,7 +161,7 @@ STORAGES = {
 
 STATIC_URL = 'static/'
 
-STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+#STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
 STATIC_ROOT = str(BASE_DIR / 'staticfiles/static')
 STATICFILES_DIR = [BASE_DIR / 'static']
 
