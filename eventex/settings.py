@@ -150,24 +150,24 @@ CLOUDINARY_STORAGE = {
     'SECURE': False,
 }
 
-STORAGES = {
-    'default':
-        {
-        "BACKEND":
-            'cloudinary_storage.storage.MediaCloudinaryStorage' 
-        }, 
-        "staticfiles": 
-            { "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage", }, 
-        }
+# STORAGES = {
+#     'default':
+#         {
+#         "BACKEND":
+#             'cloudinary_storage.storage.MediaCloudinaryStorage' 
+#         }, 
+#         "staticfiles": 
+#             { "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage", }, 
+#         }
 
 STATIC_URL = 'static/'
 
-#STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
 STATIC_ROOT = str(BASE_DIR / 'staticfiles/static')
 STATICFILES_DIR = [BASE_DIR / 'static']
 
-#MEDIA_URL = 'img/'
-#MEDIA_ROOT = str(BASE_DIR / 'media/')
+MEDIA_URL = 'img/'
+MEDIA_ROOT = str(BASE_DIR / 'media/')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
