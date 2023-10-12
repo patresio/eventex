@@ -147,7 +147,7 @@ STATIC_ROOT = str(BASE_DIR / 'staticfiles/static/')
 STATICFILES_DIR = [BASE_DIR / 'static/']
 STORAGES = {
     "default": {"BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage"},
-    "staticfiles": {"BACKEND": "cloudinary_storage.storage.StaticHashedCloudinaryStorage"}
+    "staticfiles": {"BACKEND": "cloudinary_storage.storage.StaticCloudinaryStorage"}
 }
 
 CLOUDINARY_STORAGE = {
