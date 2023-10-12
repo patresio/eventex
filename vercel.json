@@ -10,9 +10,7 @@
             }
         }
     ],
-    "scripts": {
-        "build": "build.sh"
-    },
+    "buildCommand": "sh build.sh",
     "routes": [
         {
             "src": "/(.*)",
