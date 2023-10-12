@@ -22,5 +22,8 @@ python manage.py migrate --noinput
 echo "Collecting static files..."
 python manage.py collectstatic --no-input
 
+# Install Vercel Analycts
+npm i @vercel/analytics
+
 # Carrega Keynotes
 #python manage.py loaddata keynotes.json
