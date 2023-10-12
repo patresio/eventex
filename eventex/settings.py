@@ -40,9 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     # StaticFiles
-    'cloudinary_storage',
     'django.contrib.staticfiles',
-    'cloudinary',
     # Apps Thirds
     'test_without_migrations',
     'django_extensions',
