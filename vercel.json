@@ -8,24 +8,15 @@
                 "maxLambdaSize": "15mb",
                 "runtime": "python3.9"
             }
-        },
-        {
-            "src": "build.sh",
-            "use": "@vercel/static-build",
-            "config": {
-                "distDir": "staticfiles"
-            }
         }
     ],
+    "scripts": {
+        "build": "build.sh"
+    },
     "routes": [
-        {
-            "src": "/static/(.*)",
-            "dest": "/static/$1"
-        },
         {
             "src": "/(.*)",
             "dest": "eventex/wsgi.py"
         }
-    ],
-    "outputDirectory": "staticfiles"
+    ]
 }
