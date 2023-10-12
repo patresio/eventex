@@ -1,3 +1,7 @@
+import { inject } from '@vercel/analytics';
+
+inject();
+
 jQuery(document).ready(function($) {
 
    'use strict';
@@ -51,6 +55,3 @@ function init_map() {
 
 }
 //google.maps.event.addDomListener(window, 'load', init_map);
-
-
-
