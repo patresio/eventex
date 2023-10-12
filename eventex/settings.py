@@ -145,18 +145,6 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = str(BASE_DIR / 'staticfiles/static/')
 STATICFILES_DIR = [BASE_DIR / 'static/']
-STORAGES = {
-    "default": {"BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage"},
-    "staticfiles": {"BACKEND": "cloudinary_storage.storage.StaticCloudinaryStorage"}
-}
-
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': config('CLOUD_NAME'),
-    'API_KEY': config('CLOUD_API_KEY'),
-    'API_SECRET': config('CLOUD_API_SECRET'),
-    'STATIC_TAG': 'static',
-    'STATICFILES_MANIFEST_ROOT': str(BASE_DIR / 'manifest/'),
-}
 
 MEDIA_URL = 'img/'
 MEDIA_ROOT = str(BASE_DIR / 'media/')

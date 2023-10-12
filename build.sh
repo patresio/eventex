@@ -13,9 +13,6 @@ python -m pip install --upgrade pip
 echo "Building the project..."
 python -m pip install -r requirements.txt
 
-# Arrumando o urllib
-python -m pip install --upgrade urllib3==1.26.15
-
 # Make migrations
 echo "Making migrations..."
 python manage.py makemigrations --noinput
