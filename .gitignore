@@ -10,3 +10,4 @@
 staticfiles
 .env*.local
 .ipynb_checkpoints/
+.vscode
