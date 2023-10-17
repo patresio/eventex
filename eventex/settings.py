@@ -34,20 +34,16 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='', cast=Csv())
 # Application definition
 
 INSTALLED_APPS = [
-
-    'cloudinary_storage',
-
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    # StaticFiles
     'django.contrib.staticfiles',
     # Apps Thirds
     'test_without_migrations',
     'django_extensions',
-    
-    'cloudinary',
     # My apps
     'eventex.core',
     'eventex.subscriptions.apps.SubscriptionsConfig',
@@ -144,22 +140,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': config('CLOUD_NAME'),
-    'API_KEY': config('CLOUD_API_KEY'),
-    'API_SECRET': config('CLOUD_API_SECRET'),
-}
-
-
-
 STATIC_URL = 'static/'
-#STATIC_ROOT = str(BASE_DIR / 'staticfiles/static/')
-STATICFILES_DIR = [BASE_DIR / 'static']
-STORAGES = {
-    "default": {"BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage"},
-    "staticfiles": {"BACKEND": "cloudinary_storage.storage.StaticHashedCloudinaryStorage"}
-}
-
+STATIC_ROOT = str(BASE_DIR / 'staticfiles/static/')
+STATICFILES_DIR = [BASE_DIR / 'static/']
 
 MEDIA_URL = 'img/'
 MEDIA_ROOT = str(BASE_DIR / 'media/')
